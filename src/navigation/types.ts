@@ -7,5 +7,8 @@ export type HomeStackParamList = {
 
 export type MainTabParamList = {
   HomeStack: undefined;
+  SearchPlaceholder: undefined;
+  ReelsPlaceholder: undefined;
+  MessagesPlaceholder: undefined;
   Profile: undefined;
 };

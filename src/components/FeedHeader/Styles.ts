@@ -8,9 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 16,
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#DBDBDB",
-    ...Platform.select({
+     /*...Platform.select({
       ios: {
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 0.5 },
@@ -20,13 +18,13 @@ export const styles = StyleSheet.create({
       android: {
         elevation: 1,
       },
-    }),
+    }),*/
   },
   logoText: {
     fontSize: 24,
     fontWeight: "bold",
     fontStyle: "italic", 
-    fontFamily: Platform.OS === "ios" ? "Arial Rounded MT Bold" : "sans-serif-medium",
+    fontFamily: "Arial Rounded MT Bold",
     letterSpacing: -0.5,
   },
   iconsContainer: {
@@ -34,6 +32,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   iconButton: {
-    marginLeft: 18,
+    marginLeft: 10,
+    marginRight: 10,
   },
 });

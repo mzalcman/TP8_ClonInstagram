@@ -51,7 +51,7 @@ export default function Profile() {
       <ProfileHeader
         username="michi_pro"
         avatarUrl="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150&auto=format&fit=crop&q=60"
-        bio="Gato influencer de tiempo completo. 🐾\nAmante del atún y de tirar vasos de la mesa.\nBuenos Aires, Argentina 🇦🇷"
+        bio="Gato influencer de tiempo completo. 🐾 Amante del atún y de tirar vasos de la mesa. Buenos Aires, Argentina"
         postsCount={posts.length}
       />
 

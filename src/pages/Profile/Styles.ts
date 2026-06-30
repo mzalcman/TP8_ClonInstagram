@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: "#C7C7C7", 
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 4,
@@ -49,8 +48,6 @@ export const styles = StyleSheet.create({
   },
   tabsContainer: {
     flexDirection: "row",
-    borderTopWidth: 0.5,
-    borderTopColor: "#DBDBDB",
     marginTop: 5,
   },
   tabButton: {
