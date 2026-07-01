@@ -11,10 +11,10 @@ const { width } = Dimensions.get("window");
 const COLUMN_SIZE = width / 3; 
 
 const HIGHLIGHTS = [
-  { id: "1", title: "Viajes ✈️", image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=150" },
-  { id: "2", title: "Morfis 🐟", image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=150" },
-  { id: "3", title: "Amigos 🐾", image: "https://images.unsplash.com/photo-1574158622643-69d34d72650a?w=150" },
-  { id: "4", title: "Gym 🧶", image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150" },
+  { id: "1", title: "Viajes ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyUwFyFHnfKZub_37FECrDWZhzj-0boNRqRHMI8uG50WP2gphBkDOt2IE&s=10" },
+  { id: "2", title: "Comidas ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl4jRfQJ0TdK19_ye2vPyScpOBabcKttLEADykzJx4PLmQwUy64lJ7BZM&s=10" },
+  { id: "3", title: "Amigos ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNH7N6UN21LjvafWgyvW_2zTj3EZBXIVHnUnEOTOaJEbQq9jg7qRYetNc&s=10" },
+  { id: "4", title: "Gym ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHt1-BWBNzKAqKbT6F_oPUwFLJvimdedj2fMwm7yESvYJVoHAeqPGe0cA&s=10" },
 ];
 
 export default function Profile() {
@@ -51,7 +51,7 @@ export default function Profile() {
       <ProfileHeader
         username="michi_pro"
         avatarUrl="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150&auto=format&fit=crop&q=60"
-        bio="Gato influencer de tiempo completo. 🐾 Amante del atún y de tirar vasos de la mesa. Buenos Aires, Argentina"
+        bio="Gato influencer de tiempo completo. Amante del atún y de tirar vasos de la mesa. Buenos Aires, Argentina"
         postsCount={posts.length}
       />
 

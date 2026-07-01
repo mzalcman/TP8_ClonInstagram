@@ -97,7 +97,7 @@ export default function MainTabs() {
               focused && styles.avatarContainerActive
             ]}>
               <Image
-                source={{ uri: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150" }}
+                source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM5Q7GZAf_khCWkXmI9617p06a_w5QFLZiGWAyUPI5-Q&s=10" }}
                 style={styles.avatarIcon}
               />
             </View>

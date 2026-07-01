@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
   },
   postImage: {
     width: width,
-    height: width, // Formato cuadrado clásico de Instagram 1:1
+    height: width, 
     backgroundColor: "#F2F2F2",
   },
   actionsContainer: {

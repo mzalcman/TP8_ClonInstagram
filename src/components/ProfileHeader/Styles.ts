@@ -57,8 +57,10 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     height: 32,
     justifyContent: "center",
+    flexDirection: "row",
     alignItems: "center",
     marginTop: 15,
+    
   },
   editButtonText: {
     fontSize: 13,

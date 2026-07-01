@@ -3,30 +3,25 @@ import { ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
 import { Plus } from "lucide-react-native";
 import { styles } from "./Styles";
 
-// Datos simulados para las historias de otros usuarios (con fotos de gatos)
-const DUMMY_STORIES = [
-  { id: "1", username: "cat_lover99", avatar: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=150" },
-  { id: "2", username: "garfield_real", avatar: "https://images.unsplash.com/photo-1574158622643-69d34d72650a?w=150" },
-  { id: "3", username: "pawsome_cat", avatar: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150" },
-  { id: "4", username: "salem_magic", avatar: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=150" },
-  { id: "5", username: "whiskers_m", avatar: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=150" },
-];
+interface StoriesListProps {
+  storyAvatars: string[];
+}
 
-export default function StoriesList() {
+const USERNAMES = ["cat_lover99", "garfield_real", "pawsome_cat", "salem_magic", "whiskers_m", "kitty_cute", "michi_bello"];
+
+export default function StoriesList({ storyAvatars }: StoriesListProps) {
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.container}
     >
-      {/* Tu Historia (Botón de agregar con el signo +) */}
       <TouchableOpacity activeOpacity={0.8} style={styles.storyWrapper}>
         <View style={styles.myAvatarContainer}>
           <Image
-            source={{ uri: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150" }} // Tu foto de perfil
+            source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM5Q7GZAf_khCWkXmI9617p06a_w5QFLZiGWAyUPI5-Q&s=10" }} 
             style={styles.avatar}
           />
-          {/* El circulito azul con el "+" típico de Instagram */}
           <View style={styles.plusButton}>
             <Plus size={12} color="#FFFFFF" strokeWidth={3} />
           </View>
@@ -34,16 +29,17 @@ export default function StoriesList() {
         <Text style={styles.usernameText} numberOfLines={1}>Tu historia</Text>
       </TouchableOpacity>
 
-      {/* Historias de los demás usuarios */}
-      {DUMMY_STORIES.map((story) => (
-        <TouchableOpacity key={story.id} activeOpacity={0.8} style={styles.storyWrapper}>
-          {/* Aro con el gradiente/borde característico de historia activa */}
-          <View style={styles.activeStoryRing}>
-            <Image source={{ uri: story.avatar }} style={styles.avatar} />
-          </View>
-          <Text style={styles.usernameText} numberOfLines={1}>{story.username}</Text>
-        </TouchableOpacity>
-      ))}
+      {storyAvatars.map((avatarUrl, index) => {
+        const username = USERNAMES[index % USERNAMES.length];
+        return (
+          <TouchableOpacity key={index} activeOpacity={0.8} style={styles.storyWrapper}>
+            <View style={styles.activeStoryRing}>
+              <Image source={{ uri: avatarUrl }} style={styles.avatar} />
+            </View>
+            <Text style={styles.usernameText} numberOfLines={1}>{username}</Text>
+          </TouchableOpacity>
+        );
+      })}
     </ScrollView>
   );
 }

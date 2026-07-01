@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     const loadFeed = async () => {
       try {
-        const data = await catService.getFeedPosts(12); 
+        const data = await catService.getFeedPosts(12);
         setPosts(data);
       } catch (error) {
         console.error("Error al cargar el feed en Home:", error);
@@ -42,7 +42,7 @@ export default function Home() {
       imageUrl={item.imageUrl}
       caption={item.caption}
       initialLikes={item.likesCount}
-      onPressPost={() => navigation.navigate("Post", { id: item.id })} 
+      onPressPost={() => navigation.navigate("Post", { id: item.id })}
     />
   );
 
@@ -56,15 +56,28 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
-      <FeedHeader />
-      
       <FlatList
         data={posts}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContent}
-        ListHeaderComponent={<StoriesList />}
+
+        ListHeaderComponent={
+          <View style={{ backgroundColor: '#FFFFFF' }}>
+            <FeedHeader />
+            <StoriesList
+              storyAvatars={[
+                "https://i.pravatar.cc/150?img=40",
+                "https://i.pravatar.cc/150?img=41",
+                "https://i.pravatar.cc/150?img=42",
+                "https://i.pravatar.cc/150?img=43",
+                "https://i.pravatar.cc/150?img=44",
+                "https://i.pravatar.cc/150?img=45",
+              ]}
+            />
+          </View>
+        }
       />
     </SafeAreaView>
   );

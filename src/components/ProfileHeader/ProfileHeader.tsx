@@ -14,7 +14,7 @@ export default function ProfileHeader({ username, avatarUrl, bio, postsCount }: 
     <View style={styles.container}>
 
       <View style={styles.topRow}>
-        <Image source={{ uri: avatarUrl }} style={styles.avatar} />
+        <Image source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM5Q7GZAf_khCWkXmI9617p06a_w5QFLZiGWAyUPI5-Q&s=10" }} style={styles.avatar} />
         
         <View style={styles.statsContainer}>
           <View style={styles.statBox}>
@@ -39,6 +39,9 @@ export default function ProfileHeader({ username, avatarUrl, bio, postsCount }: 
 
       <TouchableOpacity activeOpacity={0.7} style={styles.editButton}>
         <Text style={styles.editButtonText}>Editar perfil</Text>
+      </TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.7} style={styles.editButton}>
+        <Text style={styles.editButtonText}>Compartir perfil</Text>
       </TouchableOpacity>
     </View>
   );

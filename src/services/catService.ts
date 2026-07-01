@@ -2,7 +2,7 @@ import { api } from "./api";
 import { CatResponse } from "../interfaces/Cat";
 import { Post } from "../interfaces/Post";
 
-const USERNAMES = ["michi_pro", "cat_lover99", "garfield_real", "gato_con_botas", "whiskers_meow", "salem_magic", "pawsome_cat", "felix_the_one", "kitty_styles", "meow_purr"];
+const USERNAMES = ["michi_pro", "cat_lover99", "garfield_real", "gato_con_botas", "whiskers_meow", "salem_magic", "pawsome_cat", "felix_the_one", "kitty_styles", "meow_purr", "gatito_tango", "oliver_cat", "luna_michi", "simba_paws"];
 const LOCATIONS = ["Palermo, Buenos Aires", "Cat Cafe Tokyo", "Rooftop Solarium", "The Couch", "Under the Blankets", "Catlandia", "Madrid, España", "Milán, Italia"];
 const CAPTIONS = [
   "Acá, casual dominando el mundo. 🐾",
@@ -18,24 +18,24 @@ const CAPTIONS = [
 ];
 
 export const catService = {
-
-  getFeedPosts: async (limit: number = 12): Promise<Post[]> => {
+  getFeedPosts: async (limit: number = 15): Promise<Post[]> => {
     try {
+      const response = await api.get<CatResponse[]>(`/images/search?limit=${limit}`);
+      const rawData = response.data;
 
-        const response = await api.get<CatResponse[]>(`/images/search?limit=${limit}`);
-      
-      const mappedPosts: Post[] = response.data.map((cat, index) => {
-
-        const userIndex = index % USERNAMES.length;
-        const locationIndex = index % LOCATIONS.length;
-        const captionIndex = index % CAPTIONS.length;
+      const mappedPosts: Post[] = rawData.map((cat, i) => {
+        const userIndex = i % USERNAMES.length;
+        const locationIndex = i % LOCATIONS.length;
+        const captionIndex = i % CAPTIONS.length;
+        const avatarId = 10 + i; 
+        const avatarUrl = `https://i.pravatar.cc/150?img=${avatarId}`;
 
         return {
           id: cat.id,
           userId: USERNAMES[userIndex],
-          avatarUrl: `https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150&auto=format&fit=crop&q=60`,
+          avatarUrl: avatarUrl,
           location: LOCATIONS[locationIndex],
-          imageUrl: cat.url,
+          imageUrl: cat.url,   
           caption: CAPTIONS[captionIndex],
           likesCount: Math.floor(Math.random() * 5000) + 150,
           isLiked: false,

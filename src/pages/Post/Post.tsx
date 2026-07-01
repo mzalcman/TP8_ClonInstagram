@@ -82,7 +82,7 @@ export default function Post() {
             source={{ uri: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150" }} 
             style={styles.avatar} 
           />
-          <Text style={styles.usernameText}>Detalle del Post (#{id})</Text>
+          <Text style={styles.usernameText}>Detalle del Post</Text>
         </View>
 
         {imageUrl && <Image source={{ uri: imageUrl }} style={styles.postImage} />}
