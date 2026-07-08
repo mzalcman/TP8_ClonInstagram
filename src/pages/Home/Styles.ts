@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
   },
   listContent: {
     paddingBottom: 20,
-    backgroundColor: "#FAFAFA", 
+    backgroundColor: "#FFFFFF", 
   },
 });

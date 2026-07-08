@@ -42,7 +42,7 @@ export default function Home() {
       imageUrl={item.imageUrl}
       caption={item.caption}
       initialLikes={item.likesCount}
-      onPressPost={() => navigation.navigate("Post", { id: item.id })}
+      onPressPost={() => navigation.navigate("Post", { id: item.id, postData:item })}
     />
   );
 

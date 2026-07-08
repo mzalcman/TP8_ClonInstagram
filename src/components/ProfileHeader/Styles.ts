@@ -52,16 +52,23 @@ export const styles = StyleSheet.create({
     lineHeight: 18,
     marginTop: 2,
   },
+  buttonsContainer: {
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    gap: 8, 
+    marginTop: 15, 
+    width: "100%", 
+  },
+  
   editButton: {
+    flex: 1, 
     backgroundColor: "#EFEFEF",
     borderRadius: 8,
     height: 32,
     justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 15,
-    
+    alignItems: "center", 
   },
+
   editButtonText: {
     fontSize: 13,
     fontWeight: "600",

@@ -40,13 +40,17 @@ export default function FeedCard({
     <View style={styles.cardContainer}>
 
       <View style={styles.userInfoContainer}>
-        <View style={styles.avatarNameWrapper}>
+        <TouchableOpacity 
+          style={styles.avatarNameWrapper} 
+          activeOpacity={0.7} 
+          onPress={onPressPost}
+        >
           <Image source={{ uri: avatarUrl }} style={styles.avatar} />
           <View>
             <Text style={styles.usernameText}>{userId}</Text>
             <Text style={styles.locationText}>{location}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
         <Text style={styles.moreOptions}>•••</Text>
       </View>
 
@@ -80,7 +84,7 @@ export default function FeedCard({
           {likesCount.toLocaleString()} Me gusta
         </Text>
         <Text style={styles.captionText}>
-          <Text style={styles.usernameBold}>{userId} </Text>
+          <Text style={styles.usernameBold} onPress={onPressPost}>{userId} </Text>
           {caption}
         </Text>
       </View>

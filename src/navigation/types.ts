@@ -2,6 +2,8 @@ export type HomeStackParamList = {
   Home: undefined;
   Post: {
     id: string;
+    postData?: any;
+    fromProfile?: boolean;
   };
 };
 

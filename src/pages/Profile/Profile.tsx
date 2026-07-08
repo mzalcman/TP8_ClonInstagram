@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { View, FlatList, Image, Dimensions, ActivityIndicator, ScrollView, TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Grid, Bookmark, UserSquare } from "lucide-react-native"; // Íconos para las pestañas
+import { Grid, Bookmark, UserSquare } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { catService } from "../../services/catService";
 import { Post } from "../../interfaces/Post";
 import { styles } from "./Styles";
 
 const { width } = Dimensions.get("window");
-const COLUMN_SIZE = width / 3; 
+const COLUMN_SIZE = width / 3;
 
 const HIGHLIGHTS = [
   { id: "1", title: "Viajes ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyUwFyFHnfKZub_37FECrDWZhzj-0boNRqRHMI8uG50WP2gphBkDOt2IE&s=10" },
@@ -18,9 +21,12 @@ const HIGHLIGHTS = [
 ];
 
 export default function Profile() {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("grid");
+
   useEffect(() => {
     const fetchProfilePosts = async () => {
       try {
@@ -37,10 +43,20 @@ export default function Profile() {
   }, []);
 
   const renderGridItem = ({ item }: { item: Post }) => (
-    <TouchableOpacity 
-      activeOpacity={0.9} 
+    <TouchableOpacity
+      activeOpacity={0.9}
       style={styles.gridItemContainer}
-      onPress={() => console.log("Navegar al detalle del post:", item.id)}
+      onPress={() => {
+      
+        navigation.navigate("HomeStack", {
+          screen: "Post",
+          params: {
+            id: item.id,
+            postData: item,
+            fromProfile: true
+          }
+        });
+      }}
     >
       <Image source={{ uri: item.imageUrl }} style={styles.gridImage} />
     </TouchableOpacity>
@@ -55,9 +71,9 @@ export default function Profile() {
         postsCount={posts.length}
       />
 
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false} 
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.highlightsContainer}
       >
         {HIGHLIGHTS.map((item) => (
@@ -71,20 +87,20 @@ export default function Profile() {
       </ScrollView>
 
       <View style={styles.tabsContainer}>
-        <TouchableOpacity 
-          style={[styles.tabButton, activeTab === "grid" && styles.activeTabButton]} 
+        <TouchableOpacity
+          style={[styles.tabButton, activeTab === "grid" && styles.activeTabButton]}
           onPress={() => setActiveTab("grid")}
         >
           <Grid size={22} color={activeTab === "grid" ? "#000000" : "#8E8E8E"} />
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={[styles.tabButton, activeTab === "tags" && styles.activeTabButton]} 
+        <TouchableOpacity
+          style={[styles.tabButton, activeTab === "tags" && styles.activeTabButton]}
           onPress={() => setActiveTab("tags")}
         >
           <UserSquare size={22} color={activeTab === "tags" ? "#000000" : "#8E8E8E"} />
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={[styles.tabButton, activeTab === "saved" && styles.activeTabButton]} 
+        <TouchableOpacity
+          style={[styles.tabButton, activeTab === "saved" && styles.activeTabButton]}
           onPress={() => setActiveTab("saved")}
         >
           <Bookmark size={22} color={activeTab === "saved" ? "#000000" : "#8E8E8E"} />
@@ -107,7 +123,7 @@ export default function Profile() {
         data={posts}
         renderItem={renderGridItem}
         keyExtractor={(item) => item.id}
-        numColumns={3} 
+        numColumns={3}
         ListHeaderComponent={renderHeaderLayout}
         showsVerticalScrollIndicator={false}
       />

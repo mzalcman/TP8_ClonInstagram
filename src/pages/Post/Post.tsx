@@ -4,10 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, useNavigation, RouteProp } from "@react-navigation/native";
 import { Heart, MessageCircle, Send, ChevronLeft } from "lucide-react-native";
 
-import { HomeStackParamList } from "../../navigation/types";
 import { styles } from "./Styles";
 
-type PostScreenRouteProp = RouteProp<HomeStackParamList, "Post">;
+type PostScreenRouteProp = RouteProp<{
+  Post: { id: string; postData?: any; fromProfile?: boolean };
+}, "Post">;
 
 const STATIC_COMMENTS = [
   { id: "1", user: "cat_lover99", text: "Qué michi tan hermoso! 😍" },
@@ -18,10 +19,9 @@ const STATIC_COMMENTS = [
 export default function Post() {
   const route = useRoute<PostScreenRouteProp>();
   const navigation = useNavigation();
-  const { id } = route.params;
-
+  const { id, postData, fromProfile } = route.params;
   const [liked, setLiked] = useState<boolean>(false);
-  const [likesCount, setLikesCount] = useState<number>(342); 
+  const [likesCount, setLikesCount] = useState<number>(postData?.likesCount || 342); 
   const [comments, setComments] = useState(STATIC_COMMENTS);
   const [newComment, setNewComment] = useState("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -29,11 +29,14 @@ export default function Post() {
 
   useEffect(() => {
     if (id) {
-      setImageUrl(`https://api.thecatapi.com/v1/images/${id}`);
-      setImageUrl(`https://cdn2.thecatapi.com/images/${id}.jpg`);
+      if (postData?.imageUrl) {
+        setImageUrl(postData.imageUrl);
+      } else {
+        setImageUrl(`https://cdn2.thecatapi.com/images/${id}.jpg`);
+      }
       setLoading(false);
     }
-  }, [id]);
+  }, [id, postData]);
 
   const handleLikeToggle = () => {
     if (liked) {
@@ -79,10 +82,21 @@ export default function Post() {
 
         <View style={styles.authorContainer}>
           <Image 
-            source={{ uri: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150" }} 
+            source={{ 
+              uri: fromProfile 
+                ? "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150"
+                : (postData?.avatarUrl || "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150") 
+            }} 
             style={styles.avatar} 
           />
-          <Text style={styles.usernameText}>Detalle del Post</Text>
+          <View>
+            <Text style={styles.usernameText}>
+              {fromProfile ? "michi_pro" : (postData?.userId || "michi_user")}
+            </Text>
+            <Text style={{ fontSize: 11, color: "#8E8E8E", marginTop: 1 }}>
+              {fromProfile ? "Buenos Aires, Argentina" : (postData?.location || "Catland")}
+            </Text>
+          </View>
         </View>
 
         {imageUrl && <Image source={{ uri: imageUrl }} style={styles.postImage} />}
@@ -104,8 +118,10 @@ export default function Post() {
         <View style={styles.infoContainer}>
           <Text style={styles.likesText}>{likesCount} Me gusta</Text>
           <Text style={styles.captionText}>
-            <Text style={styles.usernameBold}>michi_user </Text>
-            Miren este increíble gatito que encontré en la API externa de este gran TP! 🚀 #CatAPI
+            <Text style={styles.usernameBold}>
+              {fromProfile ? "michi_pro " : `${postData?.userId || "michi_user"} `}
+            </Text>
+            {postData?.caption || "Miren este increíble gatito que encontré en la API externa de este gran TP! 🚀 #CatAPI"}
           </Text>
         </View>
 
