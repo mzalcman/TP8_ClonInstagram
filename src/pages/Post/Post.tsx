@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, useNavigation, RouteProp } from "@react-navigation/native";
-import { Heart, MessageCircle, Send, ChevronLeft } from "lucide-react-native";
+import { Heart, MessageCircle, Send, ChevronLeft, ArrowUp } from "lucide-react-native";
 
 import { styles } from "./Styles";
 
@@ -21,7 +21,7 @@ export default function Post() {
   const navigation = useNavigation();
   const { id, postData, fromProfile } = route.params;
   const [liked, setLiked] = useState<boolean>(false);
-  const [likesCount, setLikesCount] = useState<number>(postData?.likesCount || 342); 
+  const [likesCount, setLikesCount] = useState<number>(postData?.likesCount || 342);
   const [comments, setComments] = useState(STATIC_COMMENTS);
   const [newComment, setNewComment] = useState("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -75,19 +75,19 @@ export default function Post() {
           <ChevronLeft size={28} color="#000000" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Explorar publicaciones</Text>
-        <View style={{ width: 28 }} /> 
+        <View style={{ width: 28 }} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
 
         <View style={styles.authorContainer}>
-          <Image 
-            source={{ 
-              uri: fromProfile 
+          <Image
+            source={{
+              uri: fromProfile
                 ? "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150"
-                : (postData?.avatarUrl || "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150") 
-            }} 
-            style={styles.avatar} 
+                : (postData?.avatarUrl || "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150")
+            }}
+            style={styles.avatar}
           />
           <View>
             <Text style={styles.usernameText}>
@@ -121,7 +121,7 @@ export default function Post() {
             <Text style={styles.usernameBold}>
               {fromProfile ? "michi_pro " : `${postData?.userId || "michi_user"} `}
             </Text>
-            {postData?.caption || "Miren este increíble gatito que encontré en la API externa de este gran TP! 🚀 #CatAPI"}
+            {postData?.caption || "Miren este increíble gatito que encontré en la API externa de este gran TP! #CatAPI"}
           </Text>
         </View>
 
@@ -146,10 +146,17 @@ export default function Post() {
           value={newComment}
           onChangeText={setNewComment}
         />
-        <TouchableOpacity onPress={handleAddComment} disabled={!newComment.trim()}>
-          <Text style={[styles.postCommentButtonText, !newComment.trim() && { opacity: 0.4 }]}>
-            Publicar
-          </Text>
+        <TouchableOpacity
+          onPress={handleAddComment}
+          disabled={!newComment.trim()}
+          style={[
+            styles.sendCommentButton,
+            !newComment.trim() && { opacity: 0.4 }
+          ]}
+        >
+          <View style={styles.arrowIconCircle}>
+            <ArrowUp size={18} color="#FFFFFF" strokeWidth={2.5} />
+          </View>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

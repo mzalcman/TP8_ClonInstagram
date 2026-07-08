@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { House, Search, Clapperboard, Send } from "lucide-react-native";
-
+import { styles } from "./Styles"; 
 import HomeStack from "./HomeStack";
 import Profile from "../pages/Profile/Profile";
 import { MainTabParamList } from "./types";
@@ -108,23 +108,3 @@ export default function MainTabs() {
   );
 }
 
-const styles = StyleSheet.create({
-  avatarContainer: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1.5,
-    borderColor: "transparent",
-  },
-  avatarContainerActive: {
-    borderColor: "#000000",
-  },
-  avatarIcon: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: "#E1E1E1",
-  },
-});

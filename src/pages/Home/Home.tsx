@@ -3,7 +3,6 @@ import { FlatList, ActivityIndicator, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
 import FeedHeader from "../../components/FeedHeader/FeedHeader";
 import FeedCard from "../../components/FeedCard/FeedCard";
 import { catService } from "../../services/catService";

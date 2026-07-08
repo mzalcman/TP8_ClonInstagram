@@ -120,9 +120,17 @@ export const styles = StyleSheet.create({
     color: "#262626",
     marginRight: 12,
   },
-  postCommentButtonText: {
-    color: "#0095F6", 
-    fontWeight: "600",
-    fontSize: 14,
+  sendCommentButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 8,
+  },
+  arrowIconCircle: {
+    backgroundColor: "#007AFF", 
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
