@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     fontStyle: "italic", 
-    fontFamily: "Arial Rounded MT Bold",
+    fontFamily: "Arial",
     letterSpacing: -0.5,
   },
   iconsContainer: {

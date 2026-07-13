@@ -4,11 +4,11 @@
     "slug": "TP8_ClonInstagram",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/instagram.avif",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/instagram2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
