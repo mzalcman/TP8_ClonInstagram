@@ -8,6 +8,9 @@ const Stack = createNativeStackNavigator<HomeStackParamList>();
 export default function HomeStack() {
   return (
     <Stack.Navigator
+    // Explicado por la IA: 
+    // Desactiva la cabecera gris nativa de la pila de pantallas para que podamos
+    // usar e integrar nuestro propio encabezado personalizado (FeedHeader)
       screenOptions={{
         headerShown: false,
       }}

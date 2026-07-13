@@ -51,6 +51,9 @@ export default function MainTabs() {
           ),
         }}
         listeners={{
+          // Explicado por la IA:
+          // Escucha cuando el usuario presiona esta pestaña en particular y frena 
+          // la acción de cambiar de pantalla, permitiéndonos programar lógica más adelante
           tabPress: (e) => {
             e.preventDefault(); 
           },

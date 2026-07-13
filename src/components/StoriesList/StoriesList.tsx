@@ -13,7 +13,7 @@ export default function StoriesList({ storyAvatars }: StoriesListProps) {
   return (
     <ScrollView
       horizontal
-      showsHorizontalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false} //// Explicado por la IA --> Oculta la barra gris de desplazamiento para que la lista de historias quede limpia
       contentContainerStyle={styles.container}
     >
       <TouchableOpacity activeOpacity={0.8} style={styles.storyWrapper}>
@@ -30,7 +30,10 @@ export default function StoriesList({ storyAvatars }: StoriesListProps) {
       </TouchableOpacity>
 
       {storyAvatars.map((avatarUrl, index) => {
-        const username = USERNAMES[index % USERNAMES.length];
+        const username = USERNAMES[index % USERNAMES.length]; 
+        //Explicado por la IA:
+        // El operador de módulo '%' evita que nos pasemos del límite del array de nombres,
+        // // asignándolos cíclicamente (0, 1, 2, 0, 1...) sin importar cuántas fotos traiga la API.
         return (
           <TouchableOpacity key={index} activeOpacity={0.8} style={styles.storyWrapper}>
             <View style={styles.activeStoryRing}>
